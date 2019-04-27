@@ -224,8 +224,6 @@
 						raiders = parseInt(data[i].count),
 						extras = parseInt(data[i].total_extras);
 
-					start_time = start_time.setHours(start_time.getHours() + 2);
-					end_time = end_time.setHours(end_time.getHours() + 2);
 					var gym_info = "<div style='font-size: 18px; color: #0078A8;'>"+ gym_name +"</div>";
 						gym_info += "<div style='font-size: 12px;'><a href='https://www.google.com/maps/search/?api=1&query=" + data[i].lat + "," + data[i].lon + "' target='_blank' title='Click to find " + gym_name + " on Google Maps'>" + address + "</a></div>&nbsp;<br />";
 					var pokemon = "<div style='font-size: 18px;'><strong>" + pokemon_name + "</strong></div>";
