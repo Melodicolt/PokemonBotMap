@@ -5,16 +5,16 @@
   // Establish mysql connection.
   $dbh = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8mb4", DB_USER, DB_PASSWORD, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
   $dbh->setAttribute(PDO::ATTR_ORACLE_NULLS, PDO::NULL_EMPTY_STRING);
-                                                                                                                                                            
+
   $sql = "
     SELECT    raids.*,
       gyms.gym_name,
       gyms.lat,
       gyms.lon,
       gyms.address,
-      UNIX_TIMESTAMP(raids.end_time) AS ts_end,
-      UNIX_TIMESTAMP(raids.start_time) AS ts_start,
-      UNIX_TIMESTAMP(raids.end_time)-UNIX_TIMESTAMP(NOW()) AS t_left,
+      UNIX_TIMESTAMP(CONVERT_TZ(raids.end_time,'SYSTEM','+02:00')) AS ts_end,
+      UNIX_TIMESTAMP(CONVERT_TZ(raids.start_time,'SYSTEM','+02:00')) AS ts_start,
+      UNIX_TIMESTAMP(CONVERT_TZ(raids.end_time,'SYSTEM','+02:00'))-UNIX_TIMESTAMP(CONVERT_TZ(NOW(),'SYSTEM','+02:00')) AS t_left,
       pokemon.raid_level, 
       pokemon.pokedex_id,
       pokemon.pokemon_name,
