@@ -8,6 +8,8 @@
 
   $sql = "
     SELECT    raids.*,
+      CONVERT_TZ(raids.start_time,'UTC','Europe/Amsterdam') as start_time,
+      CONVERT_TZ(raids.end_time,'UTC','Europe/Amsterdam') as end_time,
       gyms.gym_name,
       gyms.lat,
       gyms.lon,
